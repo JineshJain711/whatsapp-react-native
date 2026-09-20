@@ -7,32 +7,64 @@ import { router } from 'expo-router';
 
 const index = () => {
     const[isLoading,setIsLoading] = useState(false);
-    let loading_timeout =( () =>{
+
+    let loading_timeout = (() =>{
         setIsLoading(true);
-        setTimeout(nevigate_to_welcome,3000);
+        setTimeout(navigate_to_welcome,3000);
     })
-    let nevigate_to_welcome = () =>{
+
+    let navigate_to_welcome = () =>{
         router.push("/(auth)/terms_agree")
     }
+
     useEffect(()=>{
-        setTimeout( loading_timeout, 2000);
+        const timeout = setTimeout(loading_timeout,2000);
+
+        return () =>{
+            clearTimeout(timeout)
+        }
+
     },[])
+
   return (
     <SafeAreaView style = {styles.container}>
       <View style = {styles.header}></View>
+
       <View style = {styles.body}>
-        <Image source={imagePath.logo} resizeMode='contain' style={styles.logo_style}/>
-        <Text style={styles.whatsapp_text}>Whatsapp</Text>
+        <Image
+            source={imagePath.logo}
+            resizeMode='contain'
+            style={styles.logo_style}
+        />
+
+        <Text style={styles.whatsapp_text}>
+            Whatsapp
+        </Text>
       </View>
+
       <View style = {styles.footer}>
         {
-            isLoading ?  (<>
-                <ActivityIndicator size={moderateScale(40)} color={"green"}/>
-                <Text style = {styles.load}>Loading...</Text></>)
-             : (
-            <>
-                <Text style={styles.from_text}>From </Text>
-                <Text style={styles.facebook_text}>Facebook</Text></>
+            isLoading ? (
+                <>
+                    <ActivityIndicator
+                        size={moderateScale(40)}
+                        color={"#00A884"}
+                    />
+
+                    <Text style = {styles.load}>
+                        Loading...
+                    </Text>
+                </>
+            ) : (
+                <>
+                    <Text style={styles.from_text}>
+                        From
+                    </Text>
+
+                    <Text style={styles.facebook_text}>
+                        Facebook
+                    </Text>
+                </>
             )
         }
       </View>
@@ -44,47 +76,57 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:"white",
-        alignItems:"center",
-        justifyContent:"space-between",
-        paddingVertical:verticalScale(50)
     },
+
     header:{
     },
+
     body:{
+        position:"absolute",
+        top:"50%",
+        left:0,
+        right:0,
         alignItems:"center",
-        gap:verticalScale(10),
+        transform:[{translateY:-verticalScale(55)}],
     },
+
     footer:{
+        position:"absolute",
+        bottom:verticalScale(30),
+        left:0,
+        right:0,
         alignItems:"center",
-        height:verticalScale(80)
+        height:verticalScale(80),
     },
+
     from_text:{
         fontSize:moderateScale(12),
         color:"#867373"
     },
+
     facebook_text:{
         fontSize:moderateScale(15),
         color:"#000000",
-        // fontWeight:"bold"
     },
+
     logo_style:{
-        width: moderateScale(70),
-        height: moderateScale(70),
+        width:moderateScale(70),
+        height:moderateScale(70),
         borderRadius:moderateScale(10)
     },
+
     whatsapp_text:{
         fontSize:moderateScale(35),
         color:"#000000",
         fontWeight:"bold",
-
-
+        marginTop:verticalScale(10),
     },
+
     load:{
-        fontSize:moderateScale(24),
+        fontSize:moderateScale(16),
         color:"#00A884",
         fontWeight:"bold",
-        marginTop : verticalScale(15),
-        alignItems:"center"
+        marginTop:verticalScale(10),
     }
 })
 
