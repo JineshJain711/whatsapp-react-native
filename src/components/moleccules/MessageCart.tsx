@@ -4,23 +4,41 @@ import { Image } from "expo-image";
 import imagePath from "@/constants/imagePath";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
-const MessageCart = ({ name, message, time, count, image }: any) => {
+const MessageCart = ({
+  name,
+  message,
+  time,
+  count,
+  image,
+  logoComponent,
+  rightIcon,
+  messageLeftIcon
+}: any) => {
   return (
     <TouchableOpacity style={styels.button}>
       <View style={styels.leftContainer}>
-        <Image source={image} style={styels.image} />
+        <View>
+          <Image source={image} style={styels.image} />
+          {logoComponent}
+        </View>
         <View>
           <Text style={styels.name}>{name}</Text>
-          <Text style={styels.message}>{message}</Text>
+          <View style={styels.flexBox}>
+            {messageLeftIcon}
+            <Text style={styels.message}>{message}</Text>
+          </View>
         </View>
       </View>
       <View style={styels.rightContainer}>
-        <Text style={styels.time}>{time}</Text>
-        {!!count&&(
-        <View style={styels.messageCountContainer}>
-          <Text style={styels.messageCount}>{count}</Text>
-        </View>
+        {time && <Text style={styels.time}>{time}</Text>}
+        {!!count && (
+          <View style={styels.messageCountContainer}>
+            <Text style={styels.messageCount}>{count}</Text>
+          </View>
         )}
+        {
+          rightIcon 
+        }
       </View>
     </TouchableOpacity>
   );
@@ -75,6 +93,11 @@ const styels = StyleSheet.create({
   rightContainer: {
     alignItems: "flex-end",
     gap: verticalScale(7),
+  },
+  flexBox:{
+    flexDirection:"row",
+    alignItems:"center",
+    gap:scale(7),
   },
 });
 export default MessageCart;
