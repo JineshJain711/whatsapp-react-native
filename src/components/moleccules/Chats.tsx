@@ -2,8 +2,15 @@ import { View, Text, FlatList } from "react-native";
 import React from "react";
 import MessageCart from "./MessageCart";
 import imagePath from "@/constants/imagePath";
+import { router } from "expo-router";
 
 const Chats = () => {
+  const onPressFunction = (item: any) => {
+    router.push({
+      pathname: "/chat",
+      params: { name: item?.name },
+    });
+  };
 const dataSet = [
   {
     image: imagePath.logo,
@@ -158,6 +165,7 @@ const dataSet = [
               image={item?.image}
               count={item?.messageCount}
               time={item?.time}
+              onPress={() => onPressFunction(item)}
             />
           );
         }}

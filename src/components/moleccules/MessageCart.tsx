@@ -12,10 +12,11 @@ const MessageCart = ({
   image,
   logoComponent,
   rightIcon,
-  messageLeftIcon
+  messageLeftIcon,
+  onPress,
 }: any) => {
   return (
-    <TouchableOpacity style={styels.button}>
+    <TouchableOpacity style={styels.button} onPress={onPress} activeOpacity={0.7}>
       <View style={styels.leftContainer}>
         <View>
           <Image source={image} style={styels.image} />
