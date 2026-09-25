@@ -29,7 +29,7 @@ const dataSet = [
   {
     image: imagePath.logo,
     name: "Akash",
-    message: "Project is completed 👍",
+    message: "Project is completed ",
     time: "6:20 pm",
     messageCount: 3,
   },
