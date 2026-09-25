@@ -87,7 +87,7 @@ const dataSet = [
     name: "Sagar",
     message: "Can you call me?",
     time: "2:10 pm",
-    messageCount: 3,
+    messageCount: 12,
   },
   {
     image: imagePath.logo,
